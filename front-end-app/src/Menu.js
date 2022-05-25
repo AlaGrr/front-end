@@ -8,10 +8,7 @@ class Menu extends React.Component {
             data: [],
             value: "",
             selectedRestaurant: null,
-            form: {
-                item1: null, item2: null, item3: null, item4: null, item5: null,
-                item6: null, item7: null, item8: null, item9: null, item10: null,
-            }
+
         };
     }
 
