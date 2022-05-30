@@ -36,44 +36,4 @@
     transform: rotate(360deg);
   }
 }
-.image{
-  height: 300px;
-  width: 200px;
-}
-.login{
-  height: 100vh;
-  background-image: url(../public/images/photo.png);
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.form{
-  width: 500px;
-  background-color: rgba(0,0,0,0.4);
-  padding: 60px;
-  box-sizing: border-box;
-  border-radius: 20px;
-}
-input{
-  display: block;
-  margin: 10px auto;
-  width: 300px;
-  padding: 6px 10px;
-  outline: none;
-  border: none;
-  box-sizing: border-box;
-  border-radius: 6px;
-}
-.submit{
-  background-color: #0E0;
-  font-weight: bold;
-  cursor: pointer;
-  margin: 10px auto;
-  width: 300px;
-  padding: 6px 10px;
-  outline: none;
-  border: none;
-  box-sizing: border-box;
-  border-radius: 6px;
-}
+

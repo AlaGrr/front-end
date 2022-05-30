@@ -9,6 +9,12 @@ class Home extends React.Component {
                 <Link to="/menu">Menu</Link>
                 <Link to="/Login">Login</Link>
                 <Link to="/Profile">Profile</Link>
+                <Link to="/ProfilePhoto">ProfilePhoto</Link>
+                <Link to="/Home1">Home1</Link>
+                <Link to="/RestoPlat">RestoPlat</Link>
+                <Link to="/Search">Search</Link>
+                <Link to="/Profile">Profile</Link>
+                <Link to="/Profil">Profil</Link>
             </Box>
         );
     }

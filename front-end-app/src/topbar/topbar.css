@@ -1,0 +1,119 @@
+.topbarContainer{
+height: 50px;
+width: 100%;
+background-color: #1877f2;
+display: flex;
+align-items: center;
+position:sticky;/*in order to stay at the top all the time*/
+top: 0;
+}
+/*Divide the page to 12 unities*/
+.topbarLeft{
+    flex: 3;
+}
+.logo{
+font-size: 24px;
+margin-left: 20px;
+font-weight: bold;
+color: white;
+cursor: pointer;
+}
+.topbarCenter{
+    flex: 5;
+    margin-top: 235px;
+    }
+
+.searchbar{
+   width: 100%;
+   height: 30px;
+   margin-top: -133px;
+   background-color: #fff;
+   border-radius: 30px;
+   display: block;
+   align-items: center;
+}
+.FriendsList{
+    display: none;/*A programmer*/
+    background-color: white;
+    color:black;
+    margin-top: -10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+    box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);  
+}
+.item{
+    padding: 10px;
+    margin-left: 20px;
+    height: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.item:hover{
+    background-color: gray;
+}
+.searchIcon{
+    font-size:20px !important;
+    margin-left: 10px;
+}
+.searchInput{
+    border: none;
+    width: 70%;
+    /*position: sticky, i !important;*/
+}
+.searchInput:focus{
+    outline: none;
+}
+
+.topbarRight{
+    flex: 4;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: #fff;
+}
+.topbarLink{
+    margin-right: 10px;
+    font-style: 14px;
+    cursor: pointer;
+}
+.topbarIcons{
+    display: flex;
+}
+.topbarIconItem{
+    margin-right: 15px;
+    cursor: pointer;
+    position:relative;
+}
+.HomeIcon{
+    color: #fff;
+}
+
+.topbarIconBadge{
+width: 15px;
+height: 15px;
+background-color: red;
+border-radius: 50%;
+color:white;
+position:absolute;
+top:-5px;/*move negative top*/
+right:-5px;/*move negative right*/
+display: flex;/*row*/
+align-items: center;
+justify-content: center;
+font-size: 12px;
+}
+
+.topbarImg{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;/*circle*/
+    object-fit: cover;/*cover all space*/
+    cursor: pointer;
+}
+.topbarProfileImg{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
