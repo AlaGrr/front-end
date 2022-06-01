@@ -23,7 +23,10 @@ sendCredentials() {
     }).then((response)=>response.json())
     .then((data)=>{
         localStorage.setItem("id",data);
-       document.location.href="/Home1"})
+        console.log(localStorage.getItem("id"));
+        console.log(data);
+       document.location.href="/Home1";
+    })
 }
 render(){
     return(

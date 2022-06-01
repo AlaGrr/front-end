@@ -38,10 +38,11 @@ function Wall(props) {
             <div className="wallWrapper">
                 <Share />
                 {postsSub.map((p) => (
-                    p.post.reverse().map((s)=>(<Post date={s.date} content={s.content} like={s.likeCount} share={s.shareCount} username={p.username} photo={p.userPhoto} />))))}
+                    p.post.reverse().map((s)=>(
+                    <Post id={s.id} username={p.username} photo={p.userPhoto} date={s.date} content={s.content} like={s.likeCount} share={s.shareCount} />))))}
 
                 {posts.reverse().map((p) => (
-                    <Post username={data.username} photo={data.userPhoto} date={p.date} content={p.content} like={p.likeCount} share={p.shareCount} />))}
+                    <Post id={p.id} username={data.username} photo={data.userPhoto} date={p.date} content={p.content} like={p.likeCount} share={p.shareCount} />))}
 
 
             </div>

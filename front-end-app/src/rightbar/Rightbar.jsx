@@ -14,6 +14,7 @@ function Rightbar(props) {
     };
     useEffect(() => getSubcriptions(), []);
 
+    
     const [follows, setFollows] = useState([]);
     const getFollows = () => {
         axios.get("Network/getFollows/" + localStorage.getItem("id"))

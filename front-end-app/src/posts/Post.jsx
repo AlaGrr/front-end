@@ -4,6 +4,25 @@ import axios from 'axios';
 import { MoreVert } from "@material-ui/icons"
 function Post(props) {
 
+
+    const idPost = props.id;
+    
+    const [like, setLike] = useState(1);
+   
+    function handleLikes() {
+        axios.post("Network/handleLikes", {
+            idLogin:localStorage.getItem("id"),
+            id: idPost,
+            isLike:like
+        }).then((response) => {
+            console.log(response);
+            console.log(like);
+            setLike(0);
+            console.log(like);
+        });
+    }
+
+
     return (
 
         <div className="post">
@@ -29,7 +48,7 @@ function Post(props) {
                 </div>
                 <div className="postBottom">
                     <div className="postBottomLeft">
-                        <img className="postLike" src="../images/like.png" alt="" title="Like the post" />
+                        <img onClick={() => handleLikes()} className="postLike" src="../images/like.png" alt="" title="Like the post" />
                         <span className="postLikeCounter">{props.like}</span>
                     </div>
                     <div className="postBottomRight">

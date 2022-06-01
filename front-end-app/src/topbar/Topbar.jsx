@@ -39,7 +39,6 @@ function Topbar(props) {
     useEffect(() => getUserPhoto(), []);
 
 
-
     function sendRequest(p) {
         axios.post("Network/sendRequest", {
             id: localStorage.getItem("id"),
@@ -48,6 +47,18 @@ function Topbar(props) {
             userPhoto: p.userPhoto
         })
     }
+ 
+    const [follows, setFollows] = useState([]);
+    const getFollows = () => {
+        axios.get("Network/getFollows/" + localStorage.getItem("id"))
+            .then((response) => {
+                console.log("resp");
+                console.log(response.data.length);
+                setFollows(response.data.length);
+            }
+            )
+    };
+    useEffect(() => getFollows(), []);
 
 
     return (
@@ -80,7 +91,7 @@ function Topbar(props) {
                 <div className="topbarIcons">
                     <div className="topbarIconItem">
                         <Person />
-                        <span className="topbarIconBadge">{1}</span>
+                        <span className="topbarIconBadge">{follows}</span>
                     </div>
                     <div className="topbarIconItem">
                         <Chat />

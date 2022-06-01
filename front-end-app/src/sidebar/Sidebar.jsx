@@ -15,6 +15,7 @@ function Sidebar(props) {
             setUsers((response.data));
         })
     })
+    
     return (
         <div className="sidebar">
             <div className="sidebarWrapper">

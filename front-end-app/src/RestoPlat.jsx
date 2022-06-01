@@ -2,8 +2,9 @@ import { NoBackpackRounded, TurnedInOutlined } from "@mui/icons-material";
 import { MenuList } from "@mui/material";
 import React, { Component } from "react";
 import { render } from 'react-dom';
+import { isConstructorDeclaration } from "typescript";
 
-var nbrRemove = 0;
+
 class RestoPlat extends React.Component {
     constructor(props) {
         super(props);
@@ -16,8 +17,16 @@ class RestoPlat extends React.Component {
 
             touslesMenusAvecnombre: [],
             menusSelected: [],
-            payDisplay : false
-
+            payDisplay : false, 
+            userAdresse: "NULL", 
+            payementOptionDisplay: false, 
+            likePoint : 0, 
+            payementMethod: "cb", // valeur par défaut
+            payWithLike: "oui", 
+            isPayWithLikes:true,
+            
+           
+           
         };
 
         this.affichageMenu = this.affichageMenu.bind(this);
@@ -27,12 +36,16 @@ class RestoPlat extends React.Component {
         //this.handleRemoveMenu= this.handleRemoveMenu.bind(this);
         this.getTotalPrice = this.getTotalPrice.bind(this);
         this.handlePay=this.handlePay.bind(this);
-
+        this.handleUserAdresseInput=this.handleUserAdresseInput.bind(this);
+        this.addUserAdresse= this.addUserAdresse.bind(this);
+        this.handleChoosePayment=this.handleChoosePayment.bind(this);
+        this.validateCommand=this.validateCommand.bind(this);
+        this.handlePayWithLike=this.handlePayWithLike.bind(this);
     }
 
     componentDidMount() {
 
-        const url1 = "Delevery/recupResto";
+        const url1 = "http://localhost:8080/Delevery/recupResto";
         fetch(url1)
             .then((data) => data.json())
             .then((resto) => {
@@ -42,7 +55,7 @@ class RestoPlat extends React.Component {
             });
 
 
-        const url2 = "Delevery/getTousLesMenus";
+        const url2 = "http://localhost:8080/Delevery/getTousLesMenus";
         fetch(url2)
             .then((data) => data.json())
             .then((menu) => {
@@ -55,10 +68,26 @@ class RestoPlat extends React.Component {
 
                 });
             });
+
+     
+  
+    
     }
 
+   tofetch(){
+    const url10 = "http://localhost:8080/Network/getLikes/"+localStorage.getItem("id");
+    fetch(url10)
+        .then((data) => data.json())
+        .then((resto) => {
+            this.setState({
+                likePoint: resto
+            });
+        });
+   }
 
     affichageMenu(resto) {
+
+   
         this.setState(
             {
                 click: true,
@@ -66,6 +95,9 @@ class RestoPlat extends React.Component {
             }
         )
     }
+
+
+
 
     handleRetourClick() {
         this.setState(
@@ -80,7 +112,7 @@ class RestoPlat extends React.Component {
 
         let item = event.target.value;
         this.state.checkedMenu.push(item);
-        //console.log(this.state.checkedMenu);
+        console.log(this.state.checkedMenu);
        
 
         this.setState(
@@ -96,10 +128,10 @@ class RestoPlat extends React.Component {
                 if (this.state.checkedMenu[this.state.checkedMenu.length - 1] == this.state.touslesMenusAvecnombre[j].idMenu) {
 
 
-                    //console.log(this.state.menusSelected);
+                    console.log(this.state.menusSelected);
 
                     this.state.menusSelected.push(this.state.touslesMenusAvecnombre[j]);
-                   // console.log(this.state.menusSelected);
+                    console.log(this.state.menusSelected);
 
 
                     this.state.menusSelected[this.state.checkedMenu.length - 1 ].nbr += 1;
@@ -145,28 +177,121 @@ class RestoPlat extends React.Component {
 
     //la fonction pour calculer le prix total
     getTotalPrice() {
-        let somme = 0;
+       let somme =0;
         for (let j = 0; j < this.state.menusSelected.length; j++) {
             somme += this.state.menusSelected[j].nbr * this.state.menusSelected[j].price;
         }
+       
         return somme;
     }
 
     //la fct pour afficher la page de paiement 
+    
     handlePay(){
         this.setState({
-            payDisplay: true
+            payDisplay: true, 
+        })
+    
+        //envoyer userId
+        const userId={
+            id:localStorage.getItem("id")    
+        }
+
+        let url3="http://localhost:8080/Delevery/getUserId/"+localStorage.getItem("id");
+        console.log(userId);
+        fetch(url3,{
+           /* headers:{
+                "content-type":"application/json"
+        },*/
+        method:"get",
+        //body:JSON.stringify(userId)
+        }).then((response)=>response.json())
+        .then((data)=>{
+            this.setState({
+                userAdresse: data.adresse
+            })
+
         })
     }
+
+   
+    handleUserAdresseInput(event){
+        const {value}=event.target;
+        this.setState({
+            userAdresse: value
+        })  
+             
+    }
+
+    //envoyer l'adresse
+    addUserAdresse(){
+        
+        const u={
+            id:localStorage.getItem("id"),
+            adresse: this.state.userAdresse
+        }
+        console.log(u);
+
+        let url5="http://localhost:8080/Delevery/addUserAdresse";
+        fetch(url5,{
+             headers:{
+                 "content-type":"application/json"
+         },
+         method:"post",
+         body:JSON.stringify(u)
+         }).then((response)=>response.json())
+         .then((data)=>{
+             this.setState({
+                 userAdresse: data.adresse
+             })
+ 
+         })
+
+        let url6= "------------------"
+
+        this.setState({
+            payementOptionDisplay:true,
+     
+        })
+
+    }
+
+     //payer avec like ou pas
+     handlePayWithLike(event){
+  
+        this.setState({
+            payWithLike:event.target.value,
+            isPayWithLikes:!this.state.isPayWithLikes
+        })
+    }
+
+    //choisir la façon de payer
+    handleChoosePayment(event){
+        
+        this.setState({
+            payementMethod:event.target.value
+        })
     
+    }
 
 
+   
+    validateCommand(){
+        console.log(this.state.payementMethod);
+        console.log(this.state.payWithLike)
+        const c={
+            id: localStorage.getItem("id"),
+        
+        }
 
-
+        //pas fini
+        
+        
+    }
 
     render() {
-        const { tousLesResto, click, restoChoisi, menusSelected, commandeDisplay, payDisplay } = this.state;
-      
+        const { tousLesResto, click, restoChoisi, menusSelected, commandeDisplay, payDisplay, payementOptionDisplay, likePoint } = this.state;
+        this.tofetch()
         return (
             <div>
                 {!click && (
@@ -247,13 +372,59 @@ class RestoPlat extends React.Component {
                         <>
                         <div className="payDisplay">
                             <label> l'adresse de livraison : </label>
-                           <input type="text" value="hihefe"></input>
-                           <button> valider </button>
+                           <input type="text"  placeholder={this.state.userAdresse} onChange={this.handleUserAdresseInput}></input>
+                           <button onClick={this.addUserAdresse}>valider </button>
                     
                         </div>
                         </>
                     )
                 }
+               
+                { payementOptionDisplay && (
+                    <>
+                    <div className="payementOption">
+                        
+                        <span> Votre point de like : {this.state.likePoint}</span>
+                        <p>vous voulez payer avec votre point like ? </p>
+                        <select value={this.state.payWithLike} onChange={this.handlePayWithLike}>
+                            <option id="oui" value="oui">oui</option>
+                            <option id="non" value="non">non</option>
+                        </select>
+                         <br></br>
+                         {
+                             this.state.isPayWithLikes &&(
+                                 <div>
+                                 <p> il reste {this.getTotalPrice()-likePoint} € à payer, vous voulez régler par : </p>
+                                 <select value ={this.state.payementMethod}onChange={this.handleChoosePayment}>
+                                 <option value="cb">carte bleue</option>
+                                 <option value="espece">espèce</option>
+                                 <option value="cheque">chèque</option>
+                             </select>
+                             <button onClick={this.validateCommand}>valider</button>
+                             </div>
+                             )  
+                         }
+                         {
+                             !this.state.isPayWithLikes &&(
+                                <div>
+                                <p> il reste {this.getTotalPrice()} € à payer, vous voulez régler par : </p>
+                                <select value ={this.state.payementMethod}onChange={this.handleChoosePayment}>
+                                <option value="cb">carte bleue</option>
+                                <option value="espece">espèce</option>
+                                <option value="cheque">chèque</option>
+                            </select>
+                            <button onClick={this.validateCommand}>valider</button>
+                            </div>
+                             )
+                         }
+                          
+                        
+                       
+                    </div>
+                    </>
+
+                )}
+
 
             </div >
         );
