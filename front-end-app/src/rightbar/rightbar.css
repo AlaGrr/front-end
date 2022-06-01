@@ -1,3 +1,65 @@
-.rightbar{
+.rightbar {
     flex: 3.5;
+    height: calc(100vh - 50px);
+    overflow: scroll;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: white;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(179, 179, 179);
+}
+
+.rightbarWrapper {
+    padding: 20px;
+}
+
+.rightbarListItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.rightbarListItem:hover {
+    background-color: gray;
+}
+
+.rightbarIcon {
+    margin-right: 15px;
+}
+
+.rightbarButton {
+    width: 150px;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.rightbarHr {
+    margin: 20px 0;
+}
+
+.rightbarProfilePhoto {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.rightbarProfilePhoto:hover {
+    background-color: gray;
+}
+
+.restoPlatLink {
+    text-decoration: none;
 }

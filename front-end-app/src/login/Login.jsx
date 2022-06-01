@@ -11,10 +11,10 @@ constructor(props) {
 
 sendCredentials() {
     const loginCredentials={
-        email:document.getElementById("email").value,
-        motdepasse:document.getElementById("password").value
+        monEmail:document.getElementById("email").value,
+        monMotdepasse:document.getElementById("password").value
     }
-    fetch("API/login",{
+    fetch("API/logged",{
         headers:{
             "content-type":"application/json"
     },
@@ -23,7 +23,7 @@ sendCredentials() {
     }).then((response)=>response.json())
     .then((data)=>{
         localStorage.setItem("id",data);
-        console.log(data);})
+       document.location.href="/Home1"})
 }
 render(){
     return(
@@ -33,7 +33,7 @@ render(){
                 <div className="form">
                     <input id="email" placeholder="Login"/><br></br>
                     <input id="password" placeholder="Password" /><br></br>
-                    <button className="submit" onClick={()=>this.sendCredentials()}>Login</button>
+                   <button className="submit" onClick={()=>this.sendCredentials()}>Login</button>
                 </div>
             </section>
                

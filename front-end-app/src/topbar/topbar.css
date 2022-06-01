@@ -46,10 +46,23 @@ cursor: pointer;
     margin-left: 20px;
     height: 20px;
     border-radius: 10px;
-    cursor: pointer;
 }
 .item:hover{
     background-color: gray;
+}
+.follow{
+    height: 20px;
+    width: 50px;
+    border:none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-left: 400px;
+    margin-top: -20px;
+    cursor: pointer;
+    display: block;
+}
+.follow:hover{
+    background-color: greenyellow;
 }
 .searchIcon{
     font-size:20px !important;

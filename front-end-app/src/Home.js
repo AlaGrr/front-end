@@ -14,7 +14,11 @@ class Home extends React.Component {
                 <Link to="/RestoPlat">RestoPlat</Link>
                 <Link to="/Search">Search</Link>
                 <Link to="/Profile">Profile</Link>
-                <Link to="/Profil">Profil</Link>
+                <Link to="/Post">Post</Link>
+                <Link to="/Rightbar">Rightbar</Link>
+                <Link to="/Share">Share</Link>
+                <Link to="/Topbar">Topbar</Link>
+                <Link to="/Wall">Wall</Link>
             </Box>
         );
     }

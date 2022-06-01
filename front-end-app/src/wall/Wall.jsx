@@ -1,25 +1,50 @@
 import Share from "../share/Share"
 import Post from "../posts/Post"
 import "./wall.css";
-import {useState, useEffect} from 'react';
- import axios from 'axios';
-import Search from "../seachFriends/Search";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function Wall(props) {
-    
-    const [post,setPost]=useState([]);
-    useEffect(() => {    
-        axios.get("Network/getPosts/"+1)
-        .then((response)=>{setPost((response.data));} )})      
+
+    const [data, setData] = useState([]);
+    const [posts, setPosts] = useState([]);
+    const getUserPosts = () => {
+        axios.get("Network/getPosts/" + localStorage.getItem("id"))
+            .then((response) => {
+                setData(response.data);
+                setPosts(response.data.post);
+                console.log(response.data);
+            }
+            )
+    };
+    useEffect(() => getUserPosts(), []);
+
+
+    const [dataSub, setDataSub] = useState([]);
+    const [postsSub, setPostsSub] = useState([]);
+    const getUserSubPosts = () => {
+        axios.get("Network/getSubscriptionsPost/" + localStorage.getItem("id"))
+            .then((response) => {
+                setDataSub(response.data);
+                setPostsSub(response.data);
+                console.log(response);
+            }
+            )
+    };
+    useEffect(() => getUserSubPosts(), []);
 
     return (
         <div className="wall">
-           <div className="wallWrapper">
-               <Share/>                      
-               {post.reverse().map((p) => (
-                <Post date={p.date} content={p.content} like={p.likeCount} share={p.shareCount} />))}
+            <div className="wallWrapper">
+                <Share />
+                {postsSub.map((p) => (
+                    p.post.reverse().map((s)=>(<Post date={s.date} content={s.content} like={s.likeCount} share={s.shareCount} username={p.username} photo={p.userPhoto} />))))}
 
-           </div>
+                {posts.reverse().map((p) => (
+                    <Post username={data.username} photo={data.userPhoto} date={p.date} content={p.content} like={p.likeCount} share={p.shareCount} />))}
+
+
+            </div>
         </div>
     );
 }

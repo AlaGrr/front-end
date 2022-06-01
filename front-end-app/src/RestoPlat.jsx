@@ -80,7 +80,7 @@ class RestoPlat extends React.Component {
 
         let item = event.target.value;
         this.state.checkedMenu.push(item);
-        console.log(this.state.checkedMenu);
+        //console.log(this.state.checkedMenu);
        
 
         this.setState(
@@ -96,10 +96,10 @@ class RestoPlat extends React.Component {
                 if (this.state.checkedMenu[this.state.checkedMenu.length - 1] == this.state.touslesMenusAvecnombre[j].idMenu) {
 
 
-                    console.log(this.state.menusSelected);
+                    //console.log(this.state.menusSelected);
 
                     this.state.menusSelected.push(this.state.touslesMenusAvecnombre[j]);
-                    console.log(this.state.menusSelected);
+                   // console.log(this.state.menusSelected);
 
 
                     this.state.menusSelected[this.state.checkedMenu.length - 1 ].nbr += 1;
