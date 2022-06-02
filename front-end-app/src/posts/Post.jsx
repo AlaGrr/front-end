@@ -6,14 +6,14 @@ function Post(props) {
 
 
     const idPost = props.id;
-    
+
     const [like, setLike] = useState(1);
-   
+
     function handleLikes() {
         axios.post("Network/handleLikes", {
-            idLogin:localStorage.getItem("id"),
+            idLogin: localStorage.getItem("id"),
             id: idPost,
-            isLike:like
+            isLike: like
         }).then((response) => {
             console.log(response);
             console.log(like);
@@ -33,9 +33,7 @@ function Post(props) {
                         <span className="postUserName">{props.username}</span>
                         <span className="postDate">
                             {
-                                ~~((new Date().getTime() - (new Date(props.date)).getTime()) / (1000 * 60 * 60)) + " hours " +
-                                ~~((((new Date().getTime() - (new Date(props.date)).getTime()) / (1000 * 60 * 60)) -
-                                    (~~((new Date().getTime() - (new Date(props.date)).getTime()) / (1000 * 60 * 60)))) * 60) + "min"
+                                ~~((new Date().getTime() - (new Date(props.date)).getTime()) / (1000 * 60)) + "min"
                             }
                         </span>
                     </div>

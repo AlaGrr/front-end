@@ -19,6 +19,8 @@ class Home extends React.Component {
                 <Link to="/Share">Share</Link>
                 <Link to="/Topbar">Topbar</Link>
                 <Link to="/Wall">Wall</Link>
+                <Link to="/Register">Register</Link>
+                <Link to="/Connect">Connect</Link>
             </Box>
         );
     }

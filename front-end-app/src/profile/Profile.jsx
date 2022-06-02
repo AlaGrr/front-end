@@ -21,6 +21,10 @@ export default function Profile() {
 
   useEffect(() => getProfilePhoto(), []);
 
+
+
+
+
   function handleChangeProfilePhoto(e) {
     const { value } = e.target;
     setUserProfilePhoto(value.split("\\")[2]);
@@ -35,7 +39,7 @@ export default function Profile() {
 
 
   const [username, setUser] = useState([]);
-  const getUsername= () => {
+  const getUsername = () => {
     axios.get("Network/sendUsername/" + localStorage.getItem("id"))
       .then((response) => {
         setUser(response.data.username);
@@ -45,30 +49,32 @@ export default function Profile() {
   };
   useEffect(() => getUsername(), []);
 
-  const [typedUser,setTypedUser]=useState([]);      
-   function typeUsername(e){
-         const { value } = e.target;
-         setTypedUser(value);
-     }
 
-   const [usernameBox,setBox]=useState(false); 
-   function changeUsername(){setBox(!usernameBox);} 
 
-   function sendUserName() {
-     const sentUsername={
-       id:localStorage.getItem("id"),  
-       username:typedUser
-     }
-     fetch("Network/ModifyUsername",{
-     headers:{"content-type":"application/json"},
-     method:"post",
-     body:JSON.stringify(sentUsername)
-     }).then((response)=>response.json())
-     .then((data)=>{
-         setUser(data.username);
-     })
- }
 
+
+
+  const [typedUser, setTypedUser] = useState([]);
+  function typeUsername(e) {
+    const { value } = e.target;
+    setTypedUser(value);
+  }
+
+  const [usernameBox, setBox] = useState(false);
+  function changeUsername() { setBox(!usernameBox); }
+
+
+  function sendUserName() {
+    axios.post("Network/ModifyUsername", {
+      id: localStorage.getItem("id"),
+      username: typedUser
+    })
+  }
+
+  function logout() {
+    localStorage.clear("id");
+    document.location.href = "/Login";
+  }
 
   return (
     <>
@@ -83,7 +89,7 @@ export default function Profile() {
                 className='chooseImg'
                 type="file"
                 id='input'
-               onChange={handleChangeProfilePhoto} />
+                onChange={handleChangeProfilePhoto} />
               <img
                 className="profileUserImg"
                 src={"../images/" + userPhoto}
@@ -94,18 +100,24 @@ export default function Profile() {
               <h4 className="profileInfoName">{username}</h4>
             </div>
             <div >
-              <input onClick={()=>changeUsername()}
+              <input onClick={() => changeUsername()}
                 id='usernameBox' className="Update"
                 type='button' value="Update your username" /><br /><br />
-              {usernameBox &&(
-                                  <>
-                                  <input id='username' className="UpdateUser" type='text' 
-                                   onChange={typeUsername}/><br />
-                                  <button onClick={()=>sendUserName()} className="UpdateButton" >Ok</button><br /><br /><br /><br />
-                                  </>
-                              )
-                          }
+              {usernameBox && (
+                <>
+                  <input id='username' className="UpdateUser" type='text'
+                    onChange={typeUsername} /><br />
+                  <button onClick={() => sendUserName()} className="UpdateButton" >Ok</button><br /><br /><br /><br />
+                </>
+              )
+              }
             </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <button className="logoutButton" onClick={() => logout()}>Logout</button>
           </div>
           <div className="profileRightBottom">
           </div>

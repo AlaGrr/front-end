@@ -17,11 +17,14 @@ export default function Share() {
   useEffect(() => getUsername(), []);
 
 
+
+
   const [post, setPost] = useState([]);
   function handlePostContent(e) {
     const { value } = e.target;
     setPost(value);
   }
+
 
   function sendPosts() {
     axios.post("Network/sendPosts", {
@@ -34,6 +37,12 @@ export default function Share() {
     document.getElementById("post").value = "";
   }
 
+
+ 
+
+
+
+
   const [photo, setPhoto] = useState([]);
   const getUserPhoto= () => {
       axios.get("Network/sendUserProfilePhoto/" + localStorage.getItem("id"))
@@ -43,6 +52,10 @@ export default function Share() {
           )
   };
   useEffect(() => getUserPhoto(), []);
+
+
+
+
 
   return (
     <div className="share">

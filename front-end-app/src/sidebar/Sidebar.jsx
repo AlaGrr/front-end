@@ -1,7 +1,7 @@
 import "./sidebar.css";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { SportsEsports, WorkOutline, Restaurant, HelpOutline, School, Event, Bookmark, PlayCircleFilledOutlined, Group } from "@material-ui/icons"
+import { RssFeed,Announcement, Favorite, Pages, SportsEsports, WorkOutline, Restaurant, HelpOutline, School, Event, Bookmark, PlayCircleFilledOutlined, Group } from "@material-ui/icons"
 function Sidebar(props) {
     const [userName, setUserName] = useState([]);
     function handleUserName(e) {
@@ -15,7 +15,7 @@ function Sidebar(props) {
             setUsers((response.data));
         })
     })
-    
+
     return (
         <div className="sidebar">
             <div className="sidebarWrapper">
@@ -27,6 +27,10 @@ function Sidebar(props) {
                     <li className="sidebarListItem">
                         <a href="/RestoPlat"><Restaurant className="sidebarIcon" /></a>
                         <span className="sidebarListItemText"><a className="restoPlatLink" href="/RestoPlat">Restaurants</a></span>
+                    </li>
+                    <li className="sidebarListItem">
+                        <a href=""><RssFeed className="sidebarIcon" /></a>
+                        <span className="sidebarListItemText">Feed</span>
                     </li>
                     <li className="sidebarListItem">
                         <a href=""><PlayCircleFilledOutlined className="sidebarIcon" /></a>
@@ -56,32 +60,19 @@ function Sidebar(props) {
                         <a href=""><School className="sidebarIcon" /></a>
                         <span className="sidebarListItemText">Courses</span>
                     </li>
-                    <button className="sidebarButton">Show more</button>
-                    <hr className="sidebarHr" />
                     <li className="sidebarListItem">
-                        <a href=""><WorkOutline className="sidebarIcon" /></a>
-                        <span className="sidebarListItemText">Jobs</span>
+                        <a href=""><Pages className="sidebarIcon" /></a>
+                        <span className="sidebarListItemText">Pages</span>
                     </li>
                     <li className="sidebarListItem">
-                        <a href=""><Event className="sidebarIcon" /></a>
-                        <span className="sidebarListItemText">Events</span>
+                        <a href=""><Favorite className="sidebarIcon" /></a>
+                        <span className="sidebarListItemText">Favorites</span>
                     </li>
                     <li className="sidebarListItem">
-                        <a href=""><School className="sidebarIcon" /></a>
-                        <span className="sidebarListItemText">Courses</span>
+                        <a href=""><Announcement className="sidebarIcon" /></a>
+                        <span className="sidebarListItemText">Announcement</span>
                     </li>
-                    <li className="sidebarListItem">
-                        <a href=""><WorkOutline className="sidebarIcon" /></a>
-                        <span className="sidebarListItemText">Jobs</span>
-                    </li>
-                    <li className="sidebarListItem">
-                        <a href=""><Event className="sidebarIcon" /></a>
-                        <span className="sidebarListItemText">Events</span>
-                    </li>
-                    <li className="sidebarListItem">
-                        <a href=""><School className="sidebarIcon" /></a>
-                        <span className="sidebarListItemText">Courses</span>
-                    </li>
+
 
                 </ul>
             </div>

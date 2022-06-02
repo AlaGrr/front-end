@@ -1,15 +1,8 @@
-import React from "react";
-import './login.css';
-class Login extends React.Component{
-constructor(props) {
-    super(props);
-    this.state={
-        password:"",
-        email:""
-    }
-}
+import "./login.css";
 
-sendCredentials() {
+export default function Login() {
+
+  function sendCredentials() {
     const loginCredentials={
         monEmail:document.getElementById("email").value,
         monMotdepasse:document.getElementById("password").value
@@ -25,24 +18,34 @@ sendCredentials() {
         localStorage.setItem("id",data);
         console.log(localStorage.getItem("id"));
         console.log(data);
-       document.location.href="/Home1";
-    })
-}
-render(){
-    return(
-        <div>
+       document.location.href="/Profile";
+    })}
+    
+    function newAccount(){
+      document.location.href="/";
+    }
 
-            <section  className="login">
-                <div className="form">
-                    <input id="email" placeholder="Login"/><br></br>
-                    <input id="password" placeholder="Password" /><br></br>
-                   <button className="submit" onClick={()=>this.sendCredentials()}>Login</button>
-                </div>
-            </section>
-               
+  return (
+    <div className="login">
+      <div className="loginWrapper">
+        <div className="loginLeft">
+          <h3 className="loginLogo">World Of Likes</h3>
+          <span className="loginDesc">
+            Connect with your friends. It's time for fun
+          </span>
         </div>
-    )
+        <div className="loginRight">
+          <div className="loginBox">
+            <input placeholder="Email" id="email" className="loginInput" />
+            <input placeholder="Password" id="password" className="loginInput" />
+            <button onClick={()=>sendCredentials()} className="loginButton">Log In</button>
+            <span className="loginForgot">Forgot Password?</span>
+            <button onClick={()=>newAccount()} className="loginRegisterButton">
+              Create a New Account
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
-
-}
-export default Login;

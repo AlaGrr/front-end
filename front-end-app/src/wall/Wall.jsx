@@ -6,7 +6,7 @@ import axios from 'axios';
 
 function Wall(props) {
 
-    const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
     const [posts, setPosts] = useState([]);
     const getUserPosts = () => {
         axios.get("Network/getPosts/" + localStorage.getItem("id"))
@@ -18,6 +18,11 @@ function Wall(props) {
             )
     };
     useEffect(() => getUserPosts(), []);
+
+
+
+
+
 
 
     const [dataSub, setDataSub] = useState([]);
@@ -32,6 +37,11 @@ function Wall(props) {
             )
     };
     useEffect(() => getUserSubPosts(), []);
+
+
+
+
+
 
     return (
         <div className="wall">
