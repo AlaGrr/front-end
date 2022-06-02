@@ -20,11 +20,6 @@ function Wall(props) {
     useEffect(() => getUserPosts(), []);
 
 
-
-
-
-
-
     const [dataSub, setDataSub] = useState([]);
     const [postsSub, setPostsSub] = useState([]);
     const getUserSubPosts = () => {
@@ -37,8 +32,6 @@ function Wall(props) {
             )
     };
     useEffect(() => getUserSubPosts(), []);
-
-
 
 
 

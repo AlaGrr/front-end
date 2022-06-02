@@ -21,7 +21,7 @@ function Sidebar(props) {
             <div className="sidebarWrapper">
                 <ul className="sidebarList">
                     <li className="sidebarListItem">
-                        <a href=""><SportsEsports className="sidebarIcon" /></a>
+                        <a href="/Game"><SportsEsports className="sidebarIcon" /></a>
                         <span className="sidebarListItemText">Game</span>
                     </li>
                     <li className="sidebarListItem">

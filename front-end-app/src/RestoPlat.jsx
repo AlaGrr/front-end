@@ -286,7 +286,7 @@ class RestoPlat extends React.Component {
 
         //pas fini
         
-        
+        document.location.href = "/Home1";
     }
 
     render() {

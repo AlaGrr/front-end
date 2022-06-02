@@ -13,6 +13,7 @@ import Topbar from './topbar/Topbar';
 import Wall from './wall/Wall';
 import Register from './register/Register';
 import Login from './login/Login';
+import Game from './Game';
 
 export default function App() {
   
@@ -31,6 +32,7 @@ export default function App() {
         <Route path="/Wall" element={<Wall />} />
         <Route path="/Home" element={<Home />} />
         <Route path="/Login" element={<Login />} />
+        <Route path="/Game" element={<Game />} />
         <Route path="/Post" element={<Post date={new Date()} content="Hi guys" like={1} share={1} username="Ala" photo="photo2.jpg"/>} />
       </Routes>
     </div>
